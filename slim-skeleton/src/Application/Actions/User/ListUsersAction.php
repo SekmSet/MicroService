@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Application\Actions\User;
 
 use App\Application\Actions\Action;
-use App\Model\User;
 use App\Repository\UserRepository;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Log\LoggerInterface;
