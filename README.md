@@ -4,7 +4,8 @@
 
 ----
 
-APP
+**APP** *(slim-skeleton)*
+
 
 ----
 * Slim 4.5.*
@@ -13,7 +14,7 @@ APP
 
 ----
 
-API
+**API**
 
 ----
 
@@ -23,10 +24,13 @@ API
 
 ## Folders structure
 
-* Micro service with Slim
-* Api 
+* Micro service with Slim : slim-skeleton
+* Micro service with 3F : 
+* Micro service in NodeJS : api_express
 
-## Steps of instalations
+## Steps of instalations 
+
+### slim-skeleton
 
 * Install a slim-skeleton
 * Install my ORM : Eloquent
@@ -34,7 +38,9 @@ API
     * [Link](https://alexisallais.fr/creez_une_api_avec_slim_4_et_eloquent/)
 * Create my modeles
 
-## Modeles
+## Modeles 
+
+### slim-skeleton
 
 * User 
     * id
@@ -54,12 +60,12 @@ API
     * created_at 
     * updated_at
     
-### Relationship
+#### Relationship
 
 An user can send *(or receive)* messages to any users
 A message can have only one sender but several receivers, but a message can not have several senders
 
-### CRUD
+#### CRUD
 
 Create routes and CRUD of each modeles
 
