@@ -23,7 +23,25 @@ class deleteMessageAction extends Action
     protected function action(): Response
     {
         $messageId = (int) $this->resolveArg('id');
+        $errors = [];
+        $delete = null;
 
-        echo "You are one the route : delete message in delete $messageId";
+        $isId = $this->messageRepository->findId($messageId);
+
+        if( $isId === null ){
+            $errors[] = "Impossible to delete your message";
+        } else {
+            if( $this->messageRepository->deleteMessage($messageId) > 0){
+                $delete[] = "Your message is deleted";
+            } else {
+                $delete[] = "Impossible to delete message your message";
+            }
+        }
+
+        return $this->respondWithData([
+            "errors" => $errors,
+            "delete" => $delete,
+            'message' => "You are one the route : delete message in delete"
+        ]);
     }
 }

@@ -18,11 +18,11 @@ class UserRepository extends BaseRepository
             ]);
     }
 
-    public function updateUser(Object $formData, $isId) {
+    public function updateUser(Object $formData, User $isId) {
         foreach($formData as $key => $value){
             $isId-> $key = $value;
         }
-        $isId->save();
+        return $isId->save();
     }
 
     public function deleteUser($userId): int {

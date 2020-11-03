@@ -41,9 +41,8 @@ class updateUserAction extends Action
 
         return $this->respondWithData([
             "errors" => $errors,
-            "isId" => $isId,
-            "updateUser" => $update,
-            "formData" => $formData,
+            "update" => $update,
             'message' => "You are one the route : update user in update $userId"
-        ]);    }
+        ]);
+    }
 }
