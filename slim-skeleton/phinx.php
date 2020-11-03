@@ -2,6 +2,12 @@
 
 use App\Migration\Migration;
 
+require __DIR__ . '/vendor/autoload.php';
+
+// autoload .env file
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 return
 [
     'paths' => [
@@ -14,10 +20,10 @@ return
         'default_environment' => 'development',
         'development' => [
             'adapter' => 'mysql',
-            'host' => 'localhost',
-            'name' => 'micro_service',
-            'user' => 'root',
-            'pass' => 'Obrigada',
+            'host' => $_ENV['DB_HOST'],
+            'name' => $_ENV['DB'],
+            'user' => $_ENV['DB_USERNAME'],
+            'pass' => $_ENV['DB_PWD'],
             'port' => '3306',
             'charset' => 'utf8',
         ],

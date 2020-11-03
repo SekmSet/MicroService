@@ -15,11 +15,11 @@ class Migration extends AbstractMigration {
         $this->capsule = new Capsule;
         $this->capsule->addConnection([
             'driver'    => 'mysql',
-            'host'      => "localhost",
+            'host' => $_ENV['DB_HOST'],
             'port'      => 3306,
-            'database'  => "micro_service",
-            'username'  => "root",
-            'password'  => "Obrigada",
+            'database' => $_ENV['DB'],
+            'username' => $_ENV['DB_USERNAME'],
+            'password' => $_ENV['DB_PWD'],
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
         ]);
