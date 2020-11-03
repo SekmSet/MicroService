@@ -14,12 +14,15 @@ class UserRepository extends BaseRepository
                 "username" => $username,
                 "email" => $email,
                 "phone" => $phone,
-                "password" =>$password
+                "password" =>password_hash($password, PASSWORD_BCRYPT, ["cost" =>24])
             ]);
     }
 
     public function updateUser(Object $formData, User $isId) {
         foreach($formData as $key => $value){
+            if($key === "password"){
+                $value = password_hash($value, PASSWORD_BCRYPT, ["cost" =>24]);
+            }
             $isId-> $key = $value;
         }
         return $isId->save();
