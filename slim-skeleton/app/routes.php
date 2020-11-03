@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use App\Application\Actions\Message\createMessageAction;
 use App\Application\Actions\Message\deleteMessageAction;
-use App\Application\Actions\Message\deleteUserAction;
+use App\Application\Actions\User\deleteUserAction;
 use App\Application\Actions\Message\ListMessagesAction;
 use App\Application\Actions\Message\updateMessageAction;
 use App\Application\Actions\User\createUserAction;
@@ -30,17 +30,16 @@ return function (App $app) {
     $app->group('/users', function (Group $group) {
         $group->get('', ListUsersAction::class);
         $group->get('/{id}', ViewUserAction::class);
-        $group->post('/create', createUserAction::class);
-        $group->delete('/delete/{id}', deleteUserAction::class);
-        $group->put('/update/{id}', updateUserAction::class);
+        $group->post('', createUserAction::class);
+        $group->delete('/{id}', deleteUserAction::class);
+        $group->put('/{id}', updateUserAction::class);
     });
 
     $app->group('/messages', function (Group $group) {
         $group->get('', ListMessagesAction::class);
         $group->get('/{id}', ViewMessageAction::class);
-        $group->post('/create', createMessageAction::class);
-        $group->delete('/delete/{id}', deleteMessageAction::class);
-        $group->put('/update/{id}', updateMessageAction::class);
-
+        $group->post('', createMessageAction::class);
+        $group->delete('/{id}', deleteMessageAction::class);
+        $group->put('/{id}', updateMessageAction::class);
     });
 };

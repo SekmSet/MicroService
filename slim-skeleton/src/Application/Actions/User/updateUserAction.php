@@ -23,7 +23,27 @@ class updateUserAction extends Action
     protected function action(): Response
     {
         $userId = (int) $this->resolveArg('id');
+        $formData = $this->getFormData();
+        $isId = $this->userRepository->findId($userId);
 
-        echo "You are one the route : update user in put $userId";
-    }
+        $errors = [];
+        $update = null;
+
+        if($isId === null){
+            $errors[] = "This user does not exist";
+        } else {
+            if( $this->userRepository->updateUser($formData, $isId)){
+                $update = "Your account is now update";
+            } else {
+                $update = "Impossible to update your account";
+            }
+        }
+
+        return $this->respondWithData([
+            "errors" => $errors,
+            "isId" => $isId,
+            "updateUser" => $update,
+            "formData" => $formData,
+            'message' => "You are one the route : update user in update $userId"
+        ]);    }
 }

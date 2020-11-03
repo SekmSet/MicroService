@@ -32,6 +32,11 @@ abstract class BaseRepository
         return $this->model->create($attributes);
     }
 
+    public function destroy($id): int
+    {
+        return $this->model->destroy($id);
+    }
+
     /**
      * @return Collection|Model[]
      */
@@ -56,5 +61,10 @@ abstract class BaseRepository
     public function findOrFail($id): ?Model
     {
         return $this->model->findOrFail($id);
+    }
+
+    // ? Model : retourne null ou un model
+    public function findBy($field, $value) {
+        return $this->model->find($value, $field);
     }
 }
