@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use App\Application\Actions\Auth\LoginAction;
 use App\Application\Actions\Message\createMessageAction;
 use App\Application\Actions\Message\deleteMessageAction;
 use App\Application\Actions\User\deleteUserAction;
@@ -41,5 +42,9 @@ return function (App $app) {
         $group->post('', createMessageAction::class);
         $group->delete('/{id}', deleteMessageAction::class);
         $group->put('/{id}', updateMessageAction::class);
+    });
+
+    $app->group('/auth', function (Group $group){
+        $group->post('', LoginAction::class);
     });
 };

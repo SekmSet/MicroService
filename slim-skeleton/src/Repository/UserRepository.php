@@ -14,14 +14,14 @@ class UserRepository extends BaseRepository
                 "username" => $username,
                 "email" => $email,
                 "phone" => $phone,
-                "password" =>password_hash($password, PASSWORD_BCRYPT, ["cost" =>24])
+                "password" => password_hash($password, PASSWORD_BCRYPT, ["cost" => 12])
             ]);
     }
 
     public function updateUser(Object $formData, User $isId) {
         foreach($formData as $key => $value){
             if($key === "password"){
-                $value = password_hash($value, PASSWORD_BCRYPT, ["cost" =>24]);
+                $value = password_hash($value, PASSWORD_BCRYPT, ["cost" => 12]);
             }
             $isId-> $key = $value;
         }
@@ -42,5 +42,9 @@ class UserRepository extends BaseRepository
 
     public function findId($value) : ?User {
         return $this->findBy('id', $value);
+    }
+
+    public function findUser($username, $password) : ?User {
+        return $this->model->where('username',$username)->where('password',$password)->first();
     }
 }

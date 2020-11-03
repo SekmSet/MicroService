@@ -65,6 +65,6 @@ abstract class BaseRepository
 
     // ? Model : retourne null ou un model
     public function findBy($field, $value) {
-        return $this->model->find($value, $field);
+        return $this->model->where($field, $value)->first();
     }
 }

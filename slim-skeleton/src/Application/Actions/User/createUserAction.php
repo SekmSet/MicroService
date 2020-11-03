@@ -48,7 +48,6 @@ class createUserAction extends Action
         return $this->respondWithData([
             "newUser" => $newUser,
             "errors" => $errors,
-            'datas' => $formData,
             'message' => "You are one the route : create user in post"
         ]);
     }
