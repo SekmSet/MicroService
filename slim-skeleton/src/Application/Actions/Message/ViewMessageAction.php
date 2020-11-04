@@ -27,9 +27,10 @@ class ViewMessageAction extends Action
     protected function action(): Response
     {
         $messageId = (int) $this->resolveArg('id');
-
-        $message = $this->messageRepository->findOrFail($messageId);
-        $this->logger->info("Message of id `${$messageId}` was viewed.");
+        
+//        $isUserS = $this->request->getAttribute("token")->user_id;
+        $message = $this->messageRepository->findOrFail($messageId)->with('sender')->with('receiver')->get();
+        $this->logger->info("Message of id ${messageId} was viewed.");
 
         return $this->respondWithData($message);
     }

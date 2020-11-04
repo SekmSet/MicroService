@@ -6,4 +6,8 @@ use Slim\App;
 
 return function (App $app) {
     $app->add(SessionMiddleware::class);
+    $app->add(new Tuupola\Middleware\JwtAuthentication([
+        "secret" => $_ENV['AUTH_SECRET'],
+        "path" => ["/users", "/messages"],
+    ])); // if you want get token => $this->request->getAttribute("token")->user_id
 };
