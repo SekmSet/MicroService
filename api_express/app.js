@@ -3,6 +3,8 @@ const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
 require('dotenv').config();
 
+const discussion = require("./src/routes/discussion.route")
+
 // init app
 const app = express()
 
@@ -22,6 +24,8 @@ db.on('error',console.error.bind(console,'ConnexionerroronMongoDB:'))
 // Utilisation de body parser
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
+
+app.use('/discussion', discussion);
 
 const port = process.env.SERVER_PORT;
 app.listen(port,() => { console.log('Server running on:'+port)})
