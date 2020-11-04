@@ -32,6 +32,7 @@ class createMessageAction extends Action
         $errors = [];
         $newMessage = "";
 
+//        $isUserS = $this->request->getAttribute("token")->user_id;
         $isUserS = $this->userRepository->findId($formData->id_userS);
         $isUserR = $this->userRepository->findId($formData->id_userR);
 
