@@ -21,7 +21,7 @@ $router->post('/register', 'AuthController@register');
 $router->get('/user', 'UserController@index');
 $router->get('/user/{id}', 'UserController@show');
 //
-//$router->get('/message', 'MessageController@index');
-//$router->get('/message/{id}', 'MessageController@show');
+$router->get('/discussion', 'RoomController@index');
+$router->get('/discussion/{id}', 'RoomController@show');
 
 
