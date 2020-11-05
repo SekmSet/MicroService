@@ -31,6 +31,7 @@ class createMessageAction extends Action
         $formData = $this->getFormData();
         $errors = [];
         $newMessage = "";
+        $result = null;
 
 //        $isUserS = $this->request->getAttribute("token")->user_id;
         $isUserS = $this->userRepository->findId($formData->id_userS);
@@ -39,7 +40,8 @@ class createMessageAction extends Action
         if($isUserS === null || $isUserR === null ){
             $errors[] = "The sender or receiver does not exist";
         } else {
-            if($this->messageRepository->createMessage($formData->id_userS, $formData->id_userR, $formData->message)){
+            $result = $this->messageRepository->createMessage($formData->id_userS, $formData->id_userR, $formData->message);
+            if($result){
                 $newMessage = "Your message is send";
             } else {
                 $newMessage = "Impossible to send your message";
@@ -49,7 +51,7 @@ class createMessageAction extends Action
         return $this->respondWithData([
             "newMessage" => $newMessage,
             "errors" => $errors,
-            'datas' => $formData,
+            'datas' => $result,
             'message' => "You are one the route : create message in post"
         ]);
     }

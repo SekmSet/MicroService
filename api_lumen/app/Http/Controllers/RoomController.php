@@ -42,6 +42,55 @@ class RoomController extends Controller
             ]
         ]);
 
+        $expressResult = json_decode($response->getBody());
+        foreach($expressResult->messages as $key => $message){
+            $idMessage = $message->id_messages;
+            $slimMessage = $client->request('GET', "http://localhost:8080/messages/$idMessage", [
+                'headers' => [
+                    'Authorization' => "Bearer $token",
+                ]
+            ]);
+
+            $text = json_decode($slimMessage->getBody());
+            $expressResult->messages[$key]->detail = $text->data;
+        }
+
+        return [
+            "response" => $expressResult,
+        ];
+    }
+
+    public function create(Request $request) {
+        $room = $request->get('room');
+        $client = new Client();
+
+        $token = $request->bearerToken();
+
+        $response = $client->request('POST', 'http://localhost:5555/discussion', [
+            'json' => [
+                'room' => $room
+            ],
+            'headers' => [
+                'Authorization' => "Bearer $token",
+            ]
+        ]);
+
+        return [
+            "response" => json_decode($response->getBody()),
+        ];
+    }
+
+    public function delete(Request $request, $id) {
+        $client = new Client();
+
+        $token = $request->bearerToken();
+
+        $response = $client->request('DELETE', "http://localhost:5555/discussion/$id", [
+            'headers' => [
+                'Authorization' => "Bearer $token",
+            ]
+        ]);
+
         return [
             "response" => json_decode($response->getBody()),
         ];
