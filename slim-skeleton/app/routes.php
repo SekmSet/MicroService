@@ -31,7 +31,7 @@ return function (App $app) {
     $app->group('/users', function (Group $group) {
         $group->get('', ListUsersAction::class);
         $group->get('/{id}', ViewUserAction::class);
-        $group->post('', createUserAction::class);
+        $group->post('/register', createUserAction::class);
         $group->delete('/{id}', deleteUserAction::class);
         $group->put('/{id}', updateUserAction::class);
     });

@@ -29,7 +29,7 @@ class ViewMessageAction extends Action
         $messageId = (int) $this->resolveArg('id');
         
 //        $isUserS = $this->request->getAttribute("token")->user_id;
-        $message = $this->messageRepository->findOrFail($messageId)->with('sender')->with('receiver')->get();
+        $message = $this->messageRepository->findMessageByIdWithSenderAndReceiver($messageId);
         $this->logger->info("Message of id ${messageId} was viewed.");
 
         return $this->respondWithData($message);

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Model\Message;
+use Illuminate\Database\Eloquent\Model;
 
 class MessageRepository extends BaseRepository
 {
@@ -31,5 +32,14 @@ class MessageRepository extends BaseRepository
     }
     public function findIdR($value) : ?Message {
         return $this->findBy('id_userR', $value);
+    }
+
+    /**
+     * @param $id
+     * @return Model
+     */
+    public function findMessageByIdWithSenderAndReceiver($id): ?Model
+    {
+        return $this->model->with('sender')->with('receiver')->findOrFail($id);
     }
 }
