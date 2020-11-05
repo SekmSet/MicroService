@@ -9,5 +9,6 @@ return function (App $app) {
     $app->add(new Tuupola\Middleware\JwtAuthentication([
         "secret" => $_ENV['AUTH_SECRET'],
         "path" => ["/users", "/messages"],
+        "ignore" => ["/users/register"],
     ])); // if you want get token => $this->request->getAttribute("token")->user_id
 };
